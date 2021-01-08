@@ -15,17 +15,17 @@ def main():
 	""" Finite Volume simulation """
 	
 	# Simulation parameters
-	vmag         = 1.0       # velocity
-	eta          = 0.5       # random fluctuation in angle (in radians)
-	L            = 10        # size of box
-	R            = 1         # interaction radius
-	dt           = 0.2       # time step
+	v0           = 1.0      # velocity
+	eta          = 0.5      # random fluctuation in angle (in radians)
+	L            = 10       # size of box
+	R            = 1        # interaction radius
+	dt           = 0.2      # time step
 	Nt           = 200      # number of time steps
-	N            = 500       # number of birds
+	N            = 500      # number of birds
 	plotRealTime = True
 	
 	# Initialize
-	np.random.seed(17)            # set the random number generator seed
+	np.random.seed(17)      # set the random number generator seed
 
 	# bird positions
 	x = np.random.rand(N,1)*L
@@ -33,8 +33,8 @@ def main():
 	
 	# bird velocities
 	theta = 2 * np.pi * np.random.rand(N,1)
-	vx = vmag * np.cos(theta)
-	vy = vmag * np.sin(theta)
+	vx = v0 * np.cos(theta)
+	vy = v0 * np.sin(theta)
 	
 	# Prep figure
 	fig = plt.figure(figsize=(4,4), dpi=80)
@@ -63,8 +63,8 @@ def main():
 		theta = mean_theta + eta*(np.random.rand(N,1)-0.5)
 		
 		# update velocities
-		vx = vmag * np.cos(theta)
-		vy = vmag * np.sin(theta)
+		vx = v0 * np.cos(theta)
+		vy = v0 * np.sin(theta)
 		
 		# plot in real time
 		if plotRealTime or (i == Nt-1):
